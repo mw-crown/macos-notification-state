@@ -28,7 +28,7 @@ Napi::Promise GetFocusStatus(const Napi::CallbackInfo &info) {
       requestAuthorizationWithCompletionHandler:^(
           INFocusStatusAuthorizationStatus status) {
 //         NSLog(@"MacosNotificationState: INFocusStatusAuthorizationStatus: %ld",
-              status);
+//               status);
         auto isAuthorized =
             status == INFocusStatusAuthorizationStatusAuthorized;
         // request FocusStatus.isFocused
