@@ -22,12 +22,12 @@ Napi::Promise GetFocusStatus(const Napi::CallbackInfo &info) {
       [](Napi::Env) {});
 
 #if __has_include("Intents/Intents.h")
-  NSLog(@"MacosNotificationState: FocusStatusCenter API available");
+//   NSLog(@"MacosNotificationState: FocusStatusCenter API available");
 
   [[INFocusStatusCenter defaultCenter]
       requestAuthorizationWithCompletionHandler:^(
           INFocusStatusAuthorizationStatus status) {
-        NSLog(@"MacosNotificationState: INFocusStatusAuthorizationStatus: %ld",
+//         NSLog(@"MacosNotificationState: INFocusStatusAuthorizationStatus: %ld",
               status);
         auto isAuthorized =
             status == INFocusStatusAuthorizationStatusAuthorized;
@@ -36,7 +36,7 @@ Napi::Promise GetFocusStatus(const Napi::CallbackInfo &info) {
         auto isFocused =
             [[[INFocusStatusCenter defaultCenter] focusStatus] isFocused];
 
-        NSLog(@"MacosNotificationState: isFocused: %@", isFocused);
+//         NSLog(@"MacosNotificationState: isFocused: %@", isFocused);
 
         auto callback = [=](Napi::Env env, Napi::Function noop_cb) {
           if (isAuthorized) {
@@ -55,7 +55,7 @@ Napi::Promise GetFocusStatus(const Napi::CallbackInfo &info) {
         ts_fn.BlockingCall(callback);
       }];
 #endif
-  NSLog(@"MacosNotificationState: promise created");
+//   NSLog(@"MacosNotificationState: promise created");
   return deferred.Promise();
 }
 
